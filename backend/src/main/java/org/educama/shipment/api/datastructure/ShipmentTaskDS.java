@@ -20,16 +20,18 @@ public class ShipmentTaskDS {
     public Customer sender;
     public Customer receiver;
 
-    public ShipmentTaskDS(Date createTime, String trackingId2, String taskId, String name, String description,
-                          String assignee, Customer sender, Customer receiver, Date dueDate) {
+
+    public ShipmentTaskDS(String description, String taskId, String name,  String trackingId,
+                          Date createTime, Date dueDate, String assignee, Customer sender, Customer receiver) {
         super();
         this.createTime = createTime;
-        this.trackingId = trackingId2;
+        this.trackingId = trackingId;
         this.taskId = taskId;
         this.name = name;
         this.description = description;
         this.assignee = assignee;
         this.sender = sender;
         this.receiver = receiver;
+        this.dueDate = dueDate;
     }
 }
