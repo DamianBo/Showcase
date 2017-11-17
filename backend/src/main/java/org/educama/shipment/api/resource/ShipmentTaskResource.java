@@ -10,6 +10,7 @@ import java.util.Date;
  */
 public class ShipmentTaskResource {
     public Date createTime;
+
     public String trackingId;
     public String taskId;
     public String name;
@@ -29,6 +30,7 @@ public class ShipmentTaskResource {
         this.sender = new PartyDS(shipmentTask.sender);
         this.receiver = new PartyDS(shipmentTask.receiver);
         this.dueDate = shipmentTask.dueDate;
+
         return this;
     }
 }
