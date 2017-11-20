@@ -21,7 +21,7 @@ export class TaskService {
      * @return An observable array of shipments
      */
     public findTasks(): Observable<TaskListResource> {
-        return this._restClientService.get(this.TASK_RESOURCE_PATH);
+        return this._restClientService.get(this.TASK_RESOURCE_PATH + "/active");
     }
 
 }

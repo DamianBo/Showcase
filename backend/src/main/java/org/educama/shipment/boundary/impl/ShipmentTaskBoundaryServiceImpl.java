@@ -33,12 +33,23 @@ public class ShipmentTaskBoundaryServiceImpl implements ShipmentTaskBoundaryServ
     @Override
     public List<ShipmentTaskDS> findAllActive() {
         Collection<Task> tasks = taskService.createTaskQuery().taskAssignee("educama").active().list();
+        return  shipmentTaskFromTask(tasks);
+    }
+
+    @Override
+    public List<ShipmentTaskDS> findAllActiveForShipment(String trackingId) {
+        Collection<Task> active = taskService.createTaskQuery().caseInstanceBusinessKey(trackingId).active().list();
+        return  shipmentTaskFromTask(active);
+    }
+
+    private  List<ShipmentTaskDS> shipmentTaskFromTask(Collection<Task> tasks) {
         List<ShipmentTaskDS> shipmentTasks = new ArrayList<ShipmentTaskDS>();
         for (Task task : tasks) {
             CaseInstance caseInstance = caseService.createCaseInstanceQuery().caseInstanceId(task.getCaseInstanceId()).active().singleResult();
             Shipment shipment = shipmentRepository.findOneBytrackingId(caseInstance.getBusinessKey());
             ShipmentTaskDS shipmentTaskDS = new ShipmentTaskDS(task.getCreateTime(), shipment.trackingId, task.getId(),
-                    task.getName(), task.getDescription(), task.getAssignee(), shipment.sender, shipment.receiver);
+                    task.getName(), task.getDescription(), task.getAssignee(), shipment.sender, shipment.receiver,
+                    task.getDueDate());
             shipmentTasks.add(shipmentTaskDS);
         }
         return shipmentTasks;

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -27,9 +28,20 @@ public class ShipmentTaskController {
      *
      * @return a Tasklist assigned to user "educama"
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(path = "/active", method = RequestMethod.GET)
     public ShipmentTaskListResource getTasks() {
         List <ShipmentTaskDS> tasks = shipmentTaskBoundaryService.findAllActive();
+        ShipmentTaskListResource taskList = new ShipmentTaskListResource().fromTaskCollection(tasks);
+        return taskList;
+    }
+
+    /**
+     *
+     * @return a task list of active tasks for a specific shipment
+     */
+    @RequestMapping(path = "/active/{trackingId}", method = RequestMethod.GET)
+    public ShipmentTaskListResource getActiveTasksForShipment(@PathVariable("trackingId") String trackingId) {
+        List <ShipmentTaskDS> tasks = shipmentTaskBoundaryService.findAllActiveForShipment(trackingId);
         ShipmentTaskListResource taskList = new ShipmentTaskListResource().fromTaskCollection(tasks);
         return taskList;
     }

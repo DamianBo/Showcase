@@ -10,6 +10,7 @@ import org.educama.customer.model.Customer;
 public class ShipmentTaskDS {
 
     public Date createTime;
+    public Date dueDate;
     public String trackingId;
     public String taskId;
     public String name;
@@ -20,7 +21,7 @@ public class ShipmentTaskDS {
     public Customer receiver;
 
     public ShipmentTaskDS(Date createTime, String trackingId2, String taskId, String name, String description,
-                          String assignee, Customer sender, Customer receiver) {
+                          String assignee, Customer sender, Customer receiver, Date dueDate) {
         super();
         this.createTime = createTime;
         this.trackingId = trackingId2;

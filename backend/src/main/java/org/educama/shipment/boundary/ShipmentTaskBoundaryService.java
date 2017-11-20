@@ -15,4 +15,11 @@ public interface ShipmentTaskBoundaryService {
      * @return a collection of all tasks
      */
      List<ShipmentTaskDS> findAllActive();
+
+    /**
+     * Retrieves all active tasks of a shipment.
+     *
+     * @return a collection of all active tasks to shipment
+     */
+    List<ShipmentTaskDS> findAllActiveForShipment(String trackingId);
 }
