@@ -134,6 +134,7 @@ public class RestApiDocumentation {
 
         fieldDescriptorTask = new FieldDescriptor[] {
                 fieldWithPath("createTime").description("The create time of the task"),
+                fieldWithPath("dueDate").description("The due date of the task"),
                 fieldWithPath("trackingId").description("The unique business key of the shipment mapped to the task"),
                 fieldWithPath("taskId").description("The Id of the task"),
                 fieldWithPath("name").description("The task name"),
@@ -220,7 +221,7 @@ public class RestApiDocumentation {
     public void listTasksTest() throws Exception {
         createShipment();
 
-        this.mockMvc.perform(get("/educama/v1/tasks"))
+        this.mockMvc.perform(get("/educama/v1/tasks/active"))
                 .andExpect(status().isOk())
                 .andDo(this.documentationHandler
                         .document(responseFields(

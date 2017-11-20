@@ -17,6 +17,7 @@ public class ShipmentTaskResource {
     public String assignee;
     public PartyDS sender;
     public PartyDS receiver;
+    public Date dueDate;
 
     public ShipmentTaskResource fromTask(ShipmentTaskDS shipmentTask) {
         this.createTime = shipmentTask.createTime;
@@ -27,7 +28,7 @@ public class ShipmentTaskResource {
         this.assignee = shipmentTask.assignee;
         this.sender = new PartyDS(shipmentTask.sender);
         this.receiver = new PartyDS(shipmentTask.receiver);
-
+        this.dueDate = shipmentTask.dueDate;
         return this;
     }
 }
