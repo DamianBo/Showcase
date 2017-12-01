@@ -33,7 +33,11 @@ export class NavigationBarComponent {
             },
             {
                 label: this._translateService.instant("NAVIGATION-BAR-COMPONENT_MENU-ITEM_TASK-LIST"),
-                routerLink: ["/tasks"]
+                routerLink: ["/tasks/active"]
+            },
+            {
+              label: this._translateService.instant("NAVIGATION-BAR-COMPONENT_MENU-ITEM_TASK-LIST"),
+              routerLink: ["/tasks/enabled"]
             },
             {
                 label: this._translateService.instant("NAVIGATION-BAR-COMPONENT_MENU-ITEM_MASTER-DATA"),

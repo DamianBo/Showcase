@@ -43,6 +43,7 @@
   "SHIPMENT-LIST-COMPONENT_TITLE": "Liste der Transportaufträge",
   "SHIPMENT-CAPTURE-COMPONENT_TITLE-CREATE": "Transportauftrag anlegen",
   "SHIPMENT-CAPTURE-COMPONENT_TITLE-UPDATE": "Transportauftrag ändern",
+  "SHIPMENT-CAPTURE-COMPONENT_TITLE": "Transportinformationen",
   "SHIPMENT_CAPTURE_COMPONENT-PANEL_SENDER_RECEIVER_ADDRESS": "Absender- und Empfängeradressen",
   "SHIPMENT_CAPTURE_COMPONENT_CARGO-INFORMATION": "Frachtgutinformationen",
   "SHIPMENT_CAPTURE_COMPONENT_SERVICES": "Dienstleistungen",

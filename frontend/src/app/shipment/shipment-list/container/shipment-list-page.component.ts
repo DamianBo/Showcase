@@ -56,6 +56,10 @@ export class ShipmentListPageComponent implements OnInit, OnDestroy {
         this._store.dispatch(new RequestShipmentsAction());
     }
 
+  public onTaskSelectedEvent(trackingId: string) {
+    this._router.navigate(["/shipments/edit/" + trackingId]);
+  }
+
     // ***************************************************
     // Data Retrieval
     // ***************************************************

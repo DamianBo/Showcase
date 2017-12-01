@@ -24,8 +24,11 @@ export class ShipmentListComponent {
             .subscribe(value => this.emptyListMessage = value);
     }
 
-    public onRowSelect(event: Event) {
-        this.shipmentSelectedEvent.emit(this.selectedShipment.trackingId);
-    }
+  @Output()
+  public taskSelectedEvent: EventEmitter<string> = new EventEmitter();
+
+  public onRowSelect(event: Event) {
+    this.taskSelectedEvent.emit(this.selectedShipment.trackingId);
+  }
 
 }
