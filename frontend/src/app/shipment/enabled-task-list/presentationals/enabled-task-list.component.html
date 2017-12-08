@@ -1,11 +1,11 @@
 <p-dataTable
   id="task-list-component_enabledTask-table"
-  [value]="enabledTaskList"
-  selectionMode="single"
-  [(selection)]="selectedEnabledTask"
-  (onRowSelect)="onRowSelect($event)">
-  <p-column field="trackingId" header="{{'TASK-RESOURCE_INSTANCE_ID' | translate}}"></p-column>
+  [value]="enabledTaskList">
   <p-column field="name" header="{{'TASK-RESOURCE_TASK-NAME' | translate}}"></p-column>
-  <p-column field="description" header="{{'TASK-RESOURCE_DESCRIPTION' | translate}}"></p-column>
+  <p-column header="Activate">
+    <ng-template let-enabledTask="rowData" pTemplate="body">
+      <i class="fa fa-play" (click)="onRowSelect(enabledTask)" aria-hidden="true"></i>
+    </ng-template>
+  </p-column>
 </p-dataTable>
 

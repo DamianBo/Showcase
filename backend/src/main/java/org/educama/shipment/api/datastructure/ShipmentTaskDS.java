@@ -20,9 +20,8 @@ public class ShipmentTaskDS {
     public Customer sender;
     public Customer receiver;
 
-
-    public ShipmentTaskDS(String description, String taskId, String name,  String trackingId,
-                          Date createTime, Date dueDate, String assignee, Customer sender, Customer receiver) {
+    public ShipmentTaskDS(Date createTime, String trackingId, String taskId, String name, String description,
+                          String assignee, Customer sender, Customer receiver, Date dueDate) {
         super();
         this.createTime = createTime;
         this.trackingId = trackingId;

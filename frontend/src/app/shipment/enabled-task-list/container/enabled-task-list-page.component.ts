@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, DoCheck, OnDestroy, OnInit} from "@angular/core";
 import {Store} from "@ngrx/store";
 import {Observable, Subscription} from "rxjs";
 import {State} from "../../../app.reducers";
@@ -11,8 +11,6 @@ import {
   InitializeEnabledTaskListAction, RequestEnabledTasksForShipmentAction,
   StartEnabledTaskAction
 } from "../../shipment-common/store/enbaled-tasks/enabled-task-list-page.actions";
-
-
 
 @Component({
   selector: "educama-enabled-task-list-page",
@@ -42,7 +40,7 @@ export class EnabledTaskListPageComponent implements OnInit, OnDestroy {
 
     this._activatedRoute.params.subscribe(params => {
       this._store.dispatch(new RequestEnabledTasksForShipmentAction(params["id"]))
-    });
+      });
   }
 
   public ngOnDestroy() {

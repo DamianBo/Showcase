@@ -49,9 +49,9 @@ public class ShipmentTaskBoundaryServiceImpl implements ShipmentTaskBoundaryServ
         for (Task task : tasks) {
             CaseInstance caseInstance = caseService.createCaseInstanceQuery().caseInstanceId(task.getCaseInstanceId()).active().singleResult();
             Shipment shipment = shipmentRepository.findOneBytrackingId(caseInstance.getBusinessKey());
-
-            ShipmentTaskDS shipmentTaskDS = new ShipmentTaskDS(task.getDescription(), task.getId(), task.getName(), shipment.trackingId,
-                    task.getCreateTime(), task.getDueDate(), task.getAssignee(), shipment.sender, shipment.receiver);
+            ShipmentTaskDS shipmentTaskDS = new ShipmentTaskDS(task.getCreateTime(), shipment.trackingId, task.getId(),
+                    task.getName(), task.getDescription(), task.getAssignee(), shipment.sender, shipment.receiver,
+                    task.getDueDate());
             shipmentTasks.add(shipmentTaskDS);
         }
         return shipmentTasks;
@@ -73,5 +73,14 @@ public class ShipmentTaskBoundaryServiceImpl implements ShipmentTaskBoundaryServ
             }
         }
         return enabledShipmentTasks;
+    }
+
+    @Override
+    public void manuallyStartEnabledTask(String trackingID, String name) {
+        Collection<CaseExecution> caseExecutions =
+                caseService.createCaseExecutionQuery().caseInstanceBusinessKey(trackingID).list();
+
+        caseExecutions.stream().filter(caseExecution -> caseExecution.getActivityName().equals(name)).
+                findFirst().ifPresent(caseExecution -> caseService.manuallyStartCaseExecution(caseExecution.getId()));
     }
 }

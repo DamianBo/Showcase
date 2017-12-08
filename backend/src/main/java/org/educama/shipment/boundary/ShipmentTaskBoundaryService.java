@@ -31,4 +31,6 @@ public interface ShipmentTaskBoundaryService {
      * @return a collection of all enabled tasks
      */
      List <EnabledTaskDS> findAllEnabledTasksForShipment(String trackingId);
+
+     void manuallyStartEnabledTask(String trackingId, String name);
 }
