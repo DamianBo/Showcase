@@ -1,0 +1,8 @@
+<p-dataTable
+  id="task-list-component_enabledTask-table"
+  [value]="enabledTaskList"
+  selectionMode="single"
+  [(selection)]="selectedEnabledTask"
+  (onRowSelect)="onRowSelect($event)">
+  <p-column field="name" header="{{'TASK-RESOURCE_TASK-NAME' | translate}}"></p-column>
+</p-dataTable>

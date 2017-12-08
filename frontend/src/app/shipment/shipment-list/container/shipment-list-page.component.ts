@@ -7,6 +7,7 @@ import {State} from "../../../app.reducers";
 import {Address} from "../../../customer/customer-common/api/datastructures/address.datastructure";
 import {ShipmentListSlice} from "../../shipment-common/store/shipments/shipment-list-page.slice";
 import {InitializeShipmentListAction, RequestShipmentsAction} from "../../shipment-common/store/shipments/shipment-list-page.actions";
+import {ShipmentResource} from "../../shipment-common/api/resources/shipment.resource";
 
 @Component({
     selector: "educama-shipment-list-page",
@@ -55,6 +56,10 @@ export class ShipmentListPageComponent implements OnInit, OnDestroy {
     public onButtonRefresh(): void {
         this._store.dispatch(new RequestShipmentsAction());
     }
+
+  public onShipmentSelectedEvent(shipment: ShipmentResource) {
+    this._router.navigate(["/caseui/" + shipment.trackingId]);
+  }
 
     // ***************************************************
     // Data Retrieval
