@@ -115,6 +115,19 @@ include::{snippets}/listTasksTest/http-response.adoc[]
 ==== Response structure
 include::{snippets}/listTasksTest/response-fields.adoc[]
 
+=== List of Completed Tasks
+
+A `GET` request is used to get a list of completed tasks.
+
+==== Example Request
+include::{snippets}/getCompletedTasksTest/http-request.adoc[]
+
+==== Example Response
+include::{snippets}/getCompletedTasksTest/http-response.adoc[]
+
+==== Response structure
+include::{snippets}/getCompletedTasksTest/response-fields.adoc[]
+
 == Customer
 
 This resource provides the entry point for customers.

@@ -2,6 +2,8 @@ package org.educama.shipment.boundary;
 
 import org.educama.shipment.api.datastructure.EnabledTaskDS;
 import org.educama.shipment.api.datastructure.ShipmentTaskDS;
+import org.educama.shipment.api.datastructure.CompletedTaskDS;
+
 
 import java.util.List;
 
@@ -31,4 +33,9 @@ public interface ShipmentTaskBoundaryService {
      * @return a collection of all enabled tasks
      */
      List <EnabledTaskDS> findAllEnabledTasksForShipment(String trackingId);
+
+     /*
+      * @return a collection of completed tasks for a Shipment
+      */
+     List<CompletedTaskDS> findAllCompletedTasksForShipment(String trackingId);
 }

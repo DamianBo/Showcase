@@ -2,11 +2,14 @@ package org.educama.common.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.ArrayUtils;
+import org.camunda.bpm.engine.runtime.CaseExecution;
+import org.camunda.bpm.engine.task.Task;
 import org.educama.EducamaApplication;
 import org.educama.customer.api.CustomerController;
 import org.educama.customer.model.Address;
 import org.educama.customer.model.Customer;
 import org.educama.shipment.api.ShipmentController;
+import org.educama.shipment.process.ShipmentCaseConstants;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Rule;
@@ -28,6 +31,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static org.camunda.bpm.engine.test.assertions.bpmn.AbstractAssertions.processEngine;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
@@ -67,6 +71,8 @@ public class RestApiDocumentation {
     private FieldDescriptor[] fieldDescriptorShipmentResource;
 
     private FieldDescriptor[] fieldDescriptorTask;
+
+    private FieldDescriptor[] fieldDescriptorCompletedTaskResource;
 
     private FieldDescriptor[] fieldDescriptorSaveCustomerResource;
 
@@ -155,6 +161,16 @@ public class RestApiDocumentation {
                 fieldWithPath("receiver.address.zipCode").description("The zip code of the receiver's address"),
                 fieldWithPath("receiver.address.city").description("The city of the receiver's address")};
 
+        // Completed Task Resource
+
+        fieldDescriptorCompletedTaskResource = new FieldDescriptor[]{
+                fieldWithPath("trackingId").description("The unique business key of the shipment mapped to the task"),
+                fieldWithPath("taskId").description("The Id of the task"),
+                fieldWithPath("name").description("The task name"),
+                fieldWithPath("description").description("The task description"),
+                fieldWithPath("assignee").description("The assignee of the task"),
+                fieldWithPath("endTime").description("The time when the task was completed")};
+
         // Customer Resource
 
         fieldDescriptorSaveCustomerResource = new FieldDescriptor[]{
@@ -179,7 +195,8 @@ public class RestApiDocumentation {
                 fieldWithPath("totalPages").description("Number of pages"),
                 fieldWithPath("totalElements").description("Number of entries in response"),
                 fieldWithPath("customers[]").description("An array of customer objects")};
-    }
+
+        }
 
     @Test
     public void createShipmentTest() throws Exception {
@@ -214,7 +231,6 @@ public class RestApiDocumentation {
                 .andDo(this.documentationHandler.document(
                         responseFields(fieldWithPath("shipments[]").description("An array of shipment objects"))
                                 .andWithPrefix("shipments[].", fieldDescriptorShipmentResource)));
-
     }
 
     @Test
@@ -308,6 +324,37 @@ public class RestApiDocumentation {
                 );
     }
 
+    @Test
+    public void getCompletedTasksTest() throws Exception {
+
+        MvcResult result = this.mockMvc.perform(post(ShipmentController.SHIPMENT_RESOURCE_PATH)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsBytes(this.createIncompleteShipmentResourceHashMap())))
+                .andExpect(status().isCreated()).andReturn();
+
+        JSONObject jsonResult = new JSONObject(result.getResponse().getContentAsString());
+        String trackingId =  jsonResult.getString("trackingId");
+
+        CaseExecution completeShipmentOrderCaseExecution = processEngine().getCaseService().createCaseExecutionQuery()
+                .activityId(ShipmentCaseConstants.PLAN_ITEM_HUMAN_TASK_COMPLETE_SHIPMENT_ORDER)
+                .caseInstanceBusinessKey(trackingId).singleResult();
+
+        // Complete task 'Complete shipment order'
+        Task task = processEngine().getTaskService().createTaskQuery()
+                .caseExecutionId(completeShipmentOrderCaseExecution.getId()).singleResult();
+
+        processEngine().getTaskService().complete(task.getId());
+
+        //Get Completed Task
+        this.mockMvc.perform(get("/educama/v1/tasks/completed" + "/" + trackingId))
+                    .andExpect(status().isOk())
+                    .andDo(this.documentationHandler
+                            .document(
+                                    responseFields(fieldWithPath("tasks[]").description("An array of completed task objects"))
+                                            .andWithPrefix("tasks[].", fieldDescriptorCompletedTaskResource))
+                    );
+    }
+
     private ResultActions createShipment() throws Exception {
 
         return this.mockMvc.perform(post(ShipmentController.SHIPMENT_RESOURCE_PATH).contentType(MediaType.APPLICATION_JSON)
@@ -349,6 +396,36 @@ public class RestApiDocumentation {
 
         Map<String, Object> cargo = new LinkedHashMap<>();
         cargo.put("numberPackages", "5");
+        cargo.put("totalWeight", "40");
+        cargo.put("totalCapacity", "32.5");
+        cargo.put("cargoDescription", "this cargo includes pens and other writing articles");
+        cargo.put("dangerousGoods", false);
+        shipment.put("shipmentCargo", cargo);
+
+        Map<String, Object> services = new LinkedHashMap<>();
+        services.put("preCarriage", true);
+        services.put("exportInsurance", false);
+        services.put("exportCustomsClearance", true);
+        services.put("flight", true);
+        services.put("importInsurance", true);
+        services.put("importCustomsClearance", false);
+        services.put("onCarriage", true);
+        shipment.put("shipmentServices", services);
+
+        return shipment;
+    }
+
+    // Create a Shipment without Cargo informations.
+    private Map<String, Object>  createIncompleteShipmentResourceHashMap() throws Exception {
+        String uuidSender = createCustomer("Herbert Hollig");
+        String uuidReceiver = createCustomer("Herbert Hollig");
+        Map<String, Object> shipment = new LinkedHashMap<>();
+        shipment.put("uuidSender", uuidSender);
+        shipment.put("uuidReceiver", uuidReceiver);
+        shipment.put("customerTypeEnum", "RECEIVER");
+
+        Map<String, Object> cargo = new LinkedHashMap<>();
+        cargo.put("numberPackages", "");
         cargo.put("totalWeight", "40");
         cargo.put("totalCapacity", "32.5");
         cargo.put("cargoDescription", "this cargo includes pens and other writing articles");

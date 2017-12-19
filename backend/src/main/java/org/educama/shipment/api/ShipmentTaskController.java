@@ -3,8 +3,10 @@ package org.educama.shipment.api;
 import org.educama.shipment.api.datastructure.EnabledTaskDS;
 import org.educama.shipment.api.resource.EnabledTaskListResource;
 import org.educama.shipment.api.resource.ShipmentTaskListResource;
+import org.educama.shipment.api.resource.CompletedTaskListResource;
 import org.educama.shipment.boundary.ShipmentTaskBoundaryService;
 import org.educama.shipment.api.datastructure.ShipmentTaskDS;
+import org.educama.shipment.api.datastructure.CompletedTaskDS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,7 @@ public class ShipmentTaskController {
     private ShipmentTaskBoundaryService shipmentTaskBoundaryService;
 
     /**
+     *
      * @return a Tasklist assigned to user "educama"
      */
     @RequestMapping(path = "/active", method = RequestMethod.GET)
@@ -44,6 +47,17 @@ public class ShipmentTaskController {
         List <ShipmentTaskDS> tasks = shipmentTaskBoundaryService.findAllActiveForShipment(trackingId);
         ShipmentTaskListResource taskList = new ShipmentTaskListResource().fromTaskCollection(tasks);
         return taskList;
+    }
+
+    /**
+     *
+     * @return a Completed Tasklist for a Sipment"
+     */
+    @RequestMapping(value = "/completed/{trackingId}", method = RequestMethod.GET)
+    public CompletedTaskListResource getCompletedTasks(@PathVariable("trackingId") String trackingId) {
+        List<CompletedTaskDS> completedTask = shipmentTaskBoundaryService.findAllCompletedTasksForShipment(trackingId);
+        CompletedTaskListResource completedTaskListResource = new CompletedTaskListResource().fromTaskCollection(completedTask);
+        return completedTaskListResource;
     }
 
     /**
