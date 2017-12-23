@@ -1,8 +1,11 @@
-<div>
-  <div>
+<div class="ui-g">
+  <p-panel header="{{'ACTIVE-TASK-LIST-TITLE' | translate}}">
     <educama-task-list-page></educama-task-list-page>
-    <educama-enabled-task-list-page></educama-enabled-task-list-page>
-  </div>
-  <div>
-  </div>
+  </p-panel>
+  <p-panel class="panel-enabled-task-list" header="{{'ENABLED-TASK-LIST-TITLE' | translate}}">
+   <educama-enabled-task-list-page></educama-enabled-task-list-page>
+  </p-panel>
+  <p-panel class="panel-completed-task-list" header="{{'TASK-RESOURCE__COMPLETED_TITLE' | translate}}">
+    <educama-completed-task-list-page></educama-completed-task-list-page>
+  </p-panel>
 </div>

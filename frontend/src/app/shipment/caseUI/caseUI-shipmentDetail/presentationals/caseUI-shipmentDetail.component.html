@@ -1,28 +1,29 @@
-<p-fieldset legend="{{'SHIPMENT-CAPTURE-COMPONENT_TITLE'|translate}}">
-  <div>
-    <div style="float: left; width: 40%">
-      <div>
-        <h4>{{'SHIPMENT-RESOURCE_TRACKING-ID'|translate}}</h4></div>
-      <div>
-        <label>{{shipment?.trackingId}}</label>
-      </div>
+<p-panel header="{{'SHIPMENT-CAPTURE-COMPONENT_TITLE'|translate}}">
+  <!--<ul style="list-style: none; ">
+    <li>{{'SHIPMENT-RESOURCE_TRACKING-ID'|translate}}: {{shipment?.trackingId}}</li>
+    <li>{{'SHIPMENT-RESOURCE_SENDER'|translate}}: {{shipment?.sender.name}}</li>
+    <li>{{'SHIPMENT-RESOURCE_RECEIVER' | translate}}: {{shipment?.receiver.name}}</li>
+  </ul>-->
+
+  <div class="ui-g">
+    <div class="ui-g-12 ui-md-2">
+      <label>{{'SHIPMENT-RESOURCE_TRACKING-ID'|translate}}:</label>
     </div>
-    <div style="float: none; width: 30%;display: inline-block">
-      <div>
-        <h4>{{'SHIPMENT-RESOURCE_SENDER'|translate}}</h4>
-      </div>
-      <div>
-        <label>{{shipment?.sender.name}}</label>
-      </div>
+    <div class="ui-g-12 ui-md-10 ">
+      <a>{{shipment?.trackingId}}</a>
     </div>
-    <div style="float: right; width: 30%">
-      <div>
-        <div>
-          <h4>{{'SHIPMENT-RESOURCE_RECEIVER' | translate}}</h4>
-        </div>
-        <div>
-          <label>{{shipment?.receiver.name}}</label></div>
-      </div>
+    <div class="ui-g-12 ui-md-2">
+      <label>{{'SHIPMENT-RESOURCE_SENDER'|translate}}:</label>
     </div>
-  </div>
-</p-fieldset>
+    <div class="ui-g-12 ui-md-10 ">
+      <a>{{shipment?.sender.name}}</a>
+    </div>
+    <div class="ui-g-12 ui-md-2">
+      <label>{{'SHIPMENT-RESOURCE_RECEIVER' | translate}}:</label>
+    </div>
+    <div class="ui-g-12 ui-md-10 ">
+      <a>{{shipment?.receiver.name}}</a>
+    </div>
+</div>
+
+</p-panel>

@@ -1,4 +1,4 @@
-<div *ngIf="isCaseUi===false">
+<div class="task-list-page-component" *ngIf="isCaseUi===false">
   <h1>{{'ACTIVE-TASK-LIST-TITLE' | translate}}</h1>
   <educama-task-list
     [taskList]="taskListModel.taskList"
@@ -6,8 +6,8 @@
   >
   </educama-task-list>
 </div>
-<div *ngIf="isCaseUi===true">
-  <h1>{{'ACTIVE-TASK-LIST-TITLE' | translate}}</h1>
+<div class="task-list-page-component-caseui" *ngIf="isCaseUi===true">
+  <!--<h1>{{'ACTIVE-TASK-LIST-TITLE' | translate}}</h1>-->
     <educama-caseui-task-list
       [taskList]="taskListModel.taskList"
       (taskSelectedEvent)="onTaskSelectedEvent($event)"
