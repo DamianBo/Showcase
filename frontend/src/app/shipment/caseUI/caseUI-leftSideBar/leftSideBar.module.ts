@@ -4,12 +4,14 @@ import {TaskListModule} from "../../task-list/task-list.module";
 import {CaseUIModule} from "../caseUI.module";
 import {EnabledTaskListModule} from "../../enabled-task-list/enabled-task-list.module";
 import {LeftSideBarComponent} from "./leftSideBar.component";
+import {CompletedTaskListModule} from "../../completed-task-list/completed-task-list.module";
 
 @NgModule({
   imports: [
     SharedModule,
     TaskListModule,
-    EnabledTaskListModule
+    EnabledTaskListModule,
+    CompletedTaskListModule
   ],
   declarations: [
     LeftSideBarComponent

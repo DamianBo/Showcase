@@ -1,9 +1,6 @@
-import {TaskListResource} from "../../shipment-common/api/resources/task-list.resource";
-
 export class EnabledTaskListModel {
   public enabledTaskList: EnabledTaskListRowModel[];
 }
-
 
 export class EnabledTaskListRowModel {
   public trackingId: string;

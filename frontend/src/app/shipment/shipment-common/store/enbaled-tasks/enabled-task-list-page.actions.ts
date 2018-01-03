@@ -1,6 +1,5 @@
 import {Action} from "@ngrx/store";
 import {TaskListResource} from "../../api/resources/task-list.resource";
-import {Observable} from "rxjs/Observable";
 
 // Initialize Actions
 export const INITIALIZE_ENABLED_TASK_LIST = "INITIALIZE_ENABLED_TASK_LIST";
@@ -24,7 +23,6 @@ export class RequestEnabledTasksForShipmentAction implements Action {
   type = REQUEST_ENABLED_TASKS_FOR_SHIPMENT;
 
   constructor(public trackingId: string) {
-
   }
 }
 

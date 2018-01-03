@@ -2,8 +2,6 @@ import {ActionReducer, Action} from "@ngrx/store";
 import * as actions from "./enabled-task-list-page.actions";
 import {EnabledTaskListSlice} from "./enabled-task-list-page.slice";
 import {ENABLED_TASK_LIST_SLICE_INITIAL_STATE} from "./enabled-task-list-page.initial-state";
-import {RequestTasksForShipmentAction} from "../tasks/task-list-page.actions";
-import {isUndefined} from "util";
 
 export function enabledTaskListPageReducer(state: EnabledTaskListSlice = ENABLED_TASK_LIST_SLICE_INITIAL_STATE,
                                            action: Action): EnabledTaskListSlice {

@@ -4,7 +4,6 @@ import {TaskResource} from "../../shipment-common/api/resources/task.resource";
 import {State} from "../../../app.reducers";
 import {Store} from "@ngrx/store";
 import {ActivatedRoute} from "@angular/router";
-import {RequestEnabledTasksForShipmentAction} from "../../shipment-common/store/enbaled-tasks/enabled-task-list-page.actions";
 
 @Component({
   selector: "educama-enabled-task-list",

@@ -1,0 +1,15 @@
+<p-dataTable
+  id="task-list-component_completedTask-table"
+  [value]="completedTaskList"
+  selectionMode="single"
+  [(selection)]="selectedCompletedTask">
+  <p-column field="endTime" header="{{'TASK-RESOURCE_END-TIME' | translate}}">
+    <ng-template let-col let-task="rowData" pTemplate="body">
+            <span>
+                {{task[col.field] | educamaI18nDateFormat:"shortDate" }}
+            </span>
+    </ng-template>
+  </p-column>
+  <p-column field="name" header="{{'TASK-RESOURCE_TASK-NAME' | translate}}"></p-column>
+  <p-column field="assignee" header="{{'TASK-RESOURCE_ASSIGNEE' | translate}}"></p-column>
+</p-dataTable>

@@ -23,21 +23,48 @@ export class TaskService {
     return this._restClientService.get(this.TASK_RESOURCE_PATH + "/active");
   }
 
-
+  /*
+   * Find all active tasks for a shipment
+   *
+   * @return An observable array of all active tasks
+   */
   public findTasksForShipment(trackingId: string): Observable<TaskListResource> {
     return this._restClientService.get(this.TASK_RESOURCE_PATH + "/active/" + trackingId);
   }
 
-
+  /*
+ * Find all enabled tasks
+ *
+ * @return An observable array of all enabled tasks
+ */
   public findAllEnabledTasks(): Observable<TaskListResource> {
     return this._restClientService.get(this.TASK_RESOURCE_PATH + "/enabled");
   }
 
+  /*
+ * Find all enabled tasks for a specific shipment
+ *
+ * @return An observable array of all enabled tasks for a shipment
+ */
   public findEnabledTasksToShipment(trackingId: string): Observable<TaskListResource> {
     return this._restClientService.get(this.TASK_RESOURCE_PATH + "/enabled/" + trackingId);
   }
 
+  /*
+* Find all completed tasks for a specific shipment
+*
+* @return An observable array of all enabled tasks for a shipment
+*/
+  public findCompletedTasksForShipment(trackingId: string): Observable<TaskListResource> {
+    return this._restClientService.get(this.TASK_RESOURCE_PATH + "/completed/" + trackingId);
+  }
+
+  /*
+* Start a enabled task
+*
+* @return An observable array of all remaining enabled tasks for a shipment
+*/
   public manuallyStartEnabledTask(trackingId: string, name: string): Observable<TaskListResource> {
-   return this._restClientService.post(this.TASK_RESOURCE_PATH + "/enabled/start/" + trackingId + "/" + name);
+    return this._restClientService.post(this.TASK_RESOURCE_PATH + "/enabled/start/" + trackingId + "/" + name);
   }
 }

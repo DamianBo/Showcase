@@ -7,7 +7,7 @@ import {Address} from "../../../customer/customer-common/api/datastructures/addr
 import {ActivatedRoute, Router} from "@angular/router";
 import {TaskListSlice} from "../../shipment-common/store/tasks/task-list-page.slice";
 import {
-  InitializeTaskListAction, REQUEST_TASKS,
+  InitializeTaskListAction,
   RequestTasksAction, RequestTasksForShipmentAction
 } from "../../shipment-common/store/tasks/task-list-page.actions";
 
@@ -37,14 +37,14 @@ export class TaskListPageComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     if (this._router.url.includes("caseui")) {
       this._activatedRoute.params.subscribe(params => {
-        this._store.dispatch(new RequestTasksForShipmentAction(params["id"]));
-      });
+          this._store.dispatch(new RequestTasksForShipmentAction(params["id"]));
+        }
+      );
       this.isCaseUi = true;
-    }else {
+    } else {
       this._store.dispatch(new RequestTasksAction());
       this.isCaseUi = false;
     }
-//REQUEST_TASKS
   }
 
   public ngOnDestroy() {

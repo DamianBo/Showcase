@@ -25,10 +25,8 @@ export class EnabledTaskListPageComponent implements OnInit, OnDestroy {
   // model for the page
   public enabledTaskListModel: EnabledTaskListModel = new EnabledTaskListModel();
 
-  constructor(private _router: Router,
-              private _store: Store<State>,
-              private _activatedRoute: ActivatedRoute,
-              private _taskService: TaskService) {
+  constructor(private _store: Store<State>,
+              private _activatedRoute: ActivatedRoute) {
 
     this.enabledTaskListSlice = this._store.select(state => state.enabledTaskListSlice);
 
@@ -39,8 +37,8 @@ export class EnabledTaskListPageComponent implements OnInit, OnDestroy {
   public ngOnInit() {
 
     this._activatedRoute.params.subscribe(params => {
-      this._store.dispatch(new RequestEnabledTasksForShipmentAction(params["id"]))
-      });
+      this._store.dispatch(new RequestEnabledTasksForShipmentAction(params["id"]));
+    });
   }
 
   public ngOnDestroy() {
@@ -54,7 +52,6 @@ export class EnabledTaskListPageComponent implements OnInit, OnDestroy {
 
   public onTaskSelectedEvent(taskResource: TaskResource) {
     this._store.dispatch(new StartEnabledTaskAction(taskResource.trackingId, taskResource.name));
-
   }
 
   // ***************************************************

@@ -1,4 +1,4 @@
-import {ShipmentResource} from "../../shipment-common/api/resources/shipment.resource";
+
 
 export class ShipmentListModel {
     public shipmentList: ShipmentListRowModel[];

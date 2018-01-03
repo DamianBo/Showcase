@@ -4,8 +4,6 @@
         selectionMode="single"
         [(selection)]="selectedTask"
         (onRowSelect)="onRowSelect($event)"
-        [scrollable]="true"
-        scrollHeight="200px"
         >
     <p-column field="createTime" header="{{'TASK-RESOURCE_DATE' | translate}}">
         <ng-template let-col let-task="rowData" pTemplate="body">
