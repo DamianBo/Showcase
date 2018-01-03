@@ -1,0 +1,10 @@
+<div>
+  <div class="completedTask-list-page">
+    <h1>{{'TASK-RESOURCE_COMPLETED_TITLE' | translate}}</h1>
+    <educama-completed-task-list
+      [completedTaskList]="completedTaskListModel.completedTaskList"
+      (taskSelectedEvent)="onTaskSelectedEvent($event)"
+    >
+    </educama-completed-task-list>
+  </div>
+</div>

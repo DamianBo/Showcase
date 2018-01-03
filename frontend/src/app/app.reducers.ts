@@ -26,10 +26,14 @@ import {AIRLINE_SLICE_INITIAL_STATE} from "./flights/flights-common/store/airlin
 import {AIRPORT_SLICE_INITIAL_STATE} from "./flights/flights-common/store/airports/airports.initial-state";
 import {AIRPORT_REDUCER} from "./flights/flights-common/store/airports/airports.reducer";
 import {AIRLINE_REDUCER} from "./flights/flights-common/store/airlines/airlines.reducer";
+import {CompletedTaskListSlice} from "./shipment/shipment-common/store/completed-tasks/completed-task-list-page.slice";
+import {COMPLETED_TASK_LIST_SLICE_INITIAL_STATE} from "./shipment/shipment-common/store/completed-tasks/completed-task-list-page.initial-state";
+import {COMPLETED_TASK_LIST_PAGE_REDUCER} from "./shipment/shipment-common/store/completed-tasks/completed-task-list-page.reducer";
 
 export interface State {
   shipmentListSlice: ShipmentListSlice;
   taskListSlice: TaskListSlice;
+  completedTaskListSlice: CompletedTaskListSlice;
   customerListSlice: CustomerListSlice;
   enabledTaskListSlice: EnabledTaskListSlice;
   customerCaptureSlice: CustomerCaptureSlice;
@@ -42,6 +46,7 @@ export interface State {
 export const INITIAL_STATE = {
   shipmentListSlice: SHIPMENT_LIST_SLICE_INITIAL_STATE,
   taskListSlice: TASK_LIST_SLICE_INITIAL_STATE,
+  completedTaskListSlice: COMPLETED_TASK_LIST_SLICE_INITIAL_STATE,
   customerListSlice: CUSTOMER_LIST_SLICE_INITIAL_STATE,
   enabledTaskListSlice: ENABLED_TASK_LIST_SLICE_INITIAL_STATE,
   customerCaptureSlice: CUSTOMER_CAPTURE_SLICE_INITIAL_STATE,
@@ -55,6 +60,7 @@ export const reducers: ActionReducerMap<State> = {
   shipmentListSlice: SHIPMENT_LIST_PAGE_REDUCER,
   enabledTaskListSlice: ENABLED_TASK_LIST_PAGE_REDUCER,
   taskListSlice: TASK_LIST_PAGE_REDUCER,
+  completedTaskListSlice: COMPLETED_TASK_LIST_PAGE_REDUCER,
   customerListSlice: CUSTOMER_LIST_PAGE_REDUCER,
   customerCaptureSlice: CUSTOMER_CAPTURE_PAGE_REDUCER,
   errorSlice: ERROR_REDUCER,

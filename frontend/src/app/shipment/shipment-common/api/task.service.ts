@@ -39,4 +39,8 @@ export class TaskService {
   public findEnabledTasksToShipment(trackingId: string): Observable<TaskListResource> {
     return this._restClientService.get(this.TASK_RESOURCE_PATH + "/enabled/" + trackingId);
   }
+
+  public findCompletedTasksForShipment(trackingId: string): Observable<TaskListResource> {
+    return this._restClientService.get(this.TASK_RESOURCE_PATH + "/completed/" + trackingId);
+  }
 }
