@@ -115,6 +115,32 @@ include::{snippets}/listTasksTest/http-response.adoc[]
 ==== Response structure
 include::{snippets}/listTasksTest/response-fields.adoc[]
 
+=== List of active tasks for a shipment
+
+A `GET` request is used to get a list of active tasks.
+
+==== Example Request
+include::{snippets}/getActiveTasksForShipmentTest/http-request.adoc[]
+
+==== Example Response
+include::{snippets}/getActiveTasksForShipmentTest/http-response.adoc[]
+
+==== Response structure
+include::{snippets}/getActiveTasksForShipmentTest/response-fields.adoc[]
+
+=== List of enabled tasks for a shipment
+
+A `GET` request is used to get a list of enabled tasks for a shipment.
+
+==== Example Request
+include::{snippets}/getEnabledTasksTest/http-request.adoc[]
+
+==== Example Response
+include::{snippets}/getEnabledTasksTest/http-response.adoc[]
+
+==== Response structure
+include::{snippets}/getEnabledTasksTest/response-fields.adoc[]
+
 == Customer
 
 This resource provides the entry point for customers.
