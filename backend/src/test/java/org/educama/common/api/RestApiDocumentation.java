@@ -66,6 +66,10 @@ public class RestApiDocumentation {
 
     private FieldDescriptor[] fieldDescriptorShipmentResource;
 
+    private FieldDescriptor[] fieldDescriptorActiveTask;
+
+    private FieldDescriptor[] fieldDescriptorEnabledTask;
+
     private FieldDescriptor[] fieldDescriptorTask;
 
     private FieldDescriptor[] fieldDescriptorSaveCustomerResource;
@@ -129,6 +133,39 @@ public class RestApiDocumentation {
                 fieldWithPath("shipmentServices.onCarriage").description("Is true if additional actions have to take place after the shipment")
         };
 
+        // Active Task Resource
+        fieldDescriptorActiveTask = new FieldDescriptor[] {
+                fieldWithPath("createTime").description("The create time of the task"),
+                fieldWithPath("dueDate").description("The due date of the task"),
+                fieldWithPath("trackingId").description("The unique business key of the shipment mapped to the task"),
+                fieldWithPath("taskId").description("The Id of the task"),
+                fieldWithPath("name").description("The task name"),
+                fieldWithPath("description").description("The task description"),
+                fieldWithPath("assignee").description("The assignee of the task"),
+                fieldWithPath("sender").description("The sender of the assigned shipment with address and name"),
+                fieldWithPath("sender.name").description("The name of the sender"),
+                fieldWithPath("sender.address").description("The address of the sender"),
+                fieldWithPath("sender.address.street").description("The street of the sender's address"),
+                fieldWithPath("sender.address.streetNo").description("The street number of the sender's address"),
+                fieldWithPath("sender.address.zipCode").description("The zip code of the sender's address"),
+                fieldWithPath("sender.address.city").description("The city of the sender's address"),
+                fieldWithPath("receiver").description("The receiver of the shipment with address and name"),
+                fieldWithPath("receiver.name").description("The name of the receiver"),
+                fieldWithPath("receiver.address").description("The address of the receiver"),
+                fieldWithPath("receiver.address.street").description("The street of the receiver's address"),
+                fieldWithPath("receiver.address.streetNo").description("The street number of the receiver's address"),
+                fieldWithPath("receiver.address.zipCode").description("The zip code of the receiver's address"),
+                fieldWithPath("receiver.address.city").description("The city of the receiver's address")
+        };
+
+        // Enabled Task Resource
+        fieldDescriptorEnabledTask = new FieldDescriptor[] {
+                fieldWithPath("trackingId").description("The unique business key of the shipment mapped to the task"),
+                fieldWithPath("id").description("The Id of the task"),
+                fieldWithPath("name").description("The task name"),
+                fieldWithPath("description").description("The task description"),
+                fieldWithPath("type").description("The type of the task")
+        };
 
         // Task Resource
 
@@ -226,6 +263,37 @@ public class RestApiDocumentation {
                 .andDo(this.documentationHandler
                         .document(responseFields(
                                 fieldWithPath("tasks[]").description("An array of task objects")).andWithPrefix("tasks[].", fieldDescriptorTask)));
+    }
+
+    @Test
+    public void getActiveTasksForShipmentTest() throws Exception {
+        MvcResult result = createShipment().andExpect(status().isCreated()).andReturn();
+
+        JSONObject jsonResult = new JSONObject(result.getResponse().getContentAsString());
+        String trackingId = jsonResult.getString("trackingId");
+
+
+        this.mockMvc.perform(get("/educama/v1/tasks/active/" + trackingId))
+                .andExpect(status().isOk())
+                .andDo(this.documentationHandler
+                        .document(responseFields(
+                                fieldWithPath("tasks[]").description("An array of active tasks objects"))
+                                .andWithPrefix("tasks[].", fieldDescriptorActiveTask)));
+    }
+
+    @Test
+    public void getEnabledTasksTest() throws Exception {
+        MvcResult result = createShipment().andExpect(status().isCreated()).andReturn();
+
+        JSONObject jsonResult = new JSONObject(result.getResponse().getContentAsString());
+        String trackingId = jsonResult.getString("trackingId");
+
+        this.mockMvc.perform(get("/educama/v1/tasks/enabled/" + trackingId))
+                .andExpect(status().isOk())
+                .andDo(this.documentationHandler
+                        .document(responseFields(
+                                fieldWithPath("tasks[]").description("An array of enabled tasks objects"))
+                                .andWithPrefix("tasks[].", fieldDescriptorEnabledTask)));
     }
 
     @Test
