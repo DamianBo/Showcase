@@ -85,6 +85,22 @@ include::{snippets}/createShipmentTest/http-response.adoc[]
 ==== Response structure
 include::{snippets}/createShipmentTest/response-fields.adoc[]
 
+=== Update Shipment
+
+A `PUT` request is used to update a shipment.
+
+==== Example Request
+include::{snippets}/updateShipmentTest/http-request.adoc[]
+
+==== Request structure
+include::{snippets}/updateShipmentTest/request-fields.adoc[]
+
+==== Example Response
+include::{snippets}/updateShipmentTest/http-response.adoc[]
+
+==== Response structure
+include::{snippets}/updateShipmentTest/response-fields.adoc[]
+
 === List of Shipments
 
 A `GET` request is used to get a list of shipments.

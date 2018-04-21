@@ -275,9 +275,10 @@ public class RestApiDocumentation {
                         responseFields(fieldDescriptorShipmentResource)));
     }
 
+    @Test
     public void updateShipmentTest() throws Exception {
         updateShipment()
-                .andExpect(status().isCreated()).andDo(
+                .andExpect(status().isOk()).andDo(
                 this.documentationHandler.document(
                         requestFields(fieldWithPath("uuidSender").description("the UUID of the sender"),
                                 fieldWithPath("uuidReceiver").description("the UUID of the receiver"),
