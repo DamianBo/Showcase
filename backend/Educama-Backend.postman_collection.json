@@ -179,7 +179,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"customer\": \"NovaTec Consulting GmbH\",\n  \"senderAddress\": \"Dieselstr. 18/1, 70771 Leinfelden-Echterdingen\",\n  \"receiverAddress\": \"Santa Claus Main Post Office, FI-96930 Arctic Circle, Finland\"\n}"
+							"raw": "{\r\n  \"uuidSender\" : \"19b35539-c86c-4169-83aa-ed58b1d94ac1\",\r\n  \"uuidReceiver\" : \"738edb6f-77c7-4652-a138-548cd3b972f1\",\r\n  \"customerTypeEnum\" : \"RECEIVER\",\r\n  \"shipmentCargo\" : {\r\n    \"numberPackages\" : \"5\",\r\n    \"totalWeight\" : \"40\",\r\n    \"totalCapacity\" : \"32.5\",\r\n    \"cargoDescription\" : \"This cargo includes pens and other writing articles\",\r\n    \"dangerousGoods\" : false\r\n  },\r\n  \"shipmentServices\" : {\r\n    \"preCarriage\" : true,\r\n    \"exportInsurance\" : false,\r\n    \"exportCustomsClearance\" : true,\r\n    \"flight\" : true,\r\n    \"importInsurance\" : true,\r\n    \"importCustomsClearance\" : false,\r\n    \"onCarriage\" : true\r\n  },\r\n  \"shipmentFlight\" : {\r\n    \"flightNumber\" : \"10243\",\r\n    \"airline\" : \"LH\",\r\n    \"departureAirport\" : \"FRA\",\r\n    \"destinationAirport\" : \"STR\",\r\n    \"departureTime\" : \"2015-06-02T21:34:33.616Z\",\r\n    \"destinationTime\" : \"2015-06-02T21:34:33.616Z\",\r\n    \"price\" : 100.12\r\n  }\r\n}"
 						},
 						"description": ""
 					},
