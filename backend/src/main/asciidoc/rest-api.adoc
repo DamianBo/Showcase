@@ -144,9 +144,9 @@ include::{snippets}/listTasksTest/http-response.adoc[]
 ==== Response structure
 include::{snippets}/listTasksTest/response-fields.adoc[]
 
-=== List of Completed Tasks
+=== List of Completed Tasks for a Shipment
 
-A `GET` request is used to get a list of completed tasks.
+A `GET` request is used to get a list of completed tasks for a specific shipment.
 
 ==== Example Request
 include::{snippets}/getCompletedTasksTest/http-request.adoc[]
