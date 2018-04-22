@@ -267,7 +267,7 @@
 				{
 					"name": "List All Tasks",
 					"request": {
-						"url": "http://localhost:8081/educama/v1/tasks",
+						"url": "http://localhost:8081/educama/v1/tasks/active",
 						"method": "GET",
 						"header": [
 							{

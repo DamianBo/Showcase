@@ -131,9 +131,9 @@ include::{snippets}/listShipmentTest/response-fields.adoc[]
 
 This resource provides the entry point for tasks.
 
-=== List of Tasks
+=== List of Active Tasks
 
-A `GET` request is used to get a list of tasks.
+A `GET` request is used to get a list of all active tasks.
 
 ==== Example Request
 include::{snippets}/listTasksTest/http-request.adoc[]
