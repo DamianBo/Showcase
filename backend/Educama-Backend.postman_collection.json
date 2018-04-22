@@ -257,6 +257,26 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "Add Flight to Shipment",
+					"request": {
+						"url": "http://localhost:8081/educama/v1/shipments/flight/b5e68857-8019-4317-bbb9-5ea3d1e17a8a",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"shipmentFlight\" : {\r\n    \"airline\" : \"LH\",\r\n    \"flightNumber\" : \"1023243\",\r\n    \"departureAirport\" : \"FRAA\",\r\n    \"destinationAirport\" : \"STRR\",\r\n    \"departureTime\" : \"2015-06-02T21:34:33.616Z\",\r\n    \"destinationTime\" : \"2015-06-02T21:34:33.616Z\",\r\n    \"price\" : 100.12\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
