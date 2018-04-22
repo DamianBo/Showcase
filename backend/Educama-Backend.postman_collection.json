@@ -284,11 +284,22 @@
 				{
 					"name": "List All Completed Tasks For Shipment",
 					"request": {
-						"url": "http://localhost:8081/educama/v1/tasks/completed/f086e52f-817b-455b-ac70-bfd6e78d4ac7",
+						"url": "http://localhost:8081/educama/v1/tasks/completed/54d18d39-8490-45f1-bb8d-603baf089b2e",
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"description": "The request lists all completed tasks for a Shipment."
+					},
+					"response": []
+				},
+				{
+					"name": "List All Active Tasks For Shipment",
+					"request": {
+						"url": "http://localhost:8081/educama/v1/tasks/active/54d18d39-8490-45f1-bb8d-603baf089b2e",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
 					},
 					"response": []
 				}
