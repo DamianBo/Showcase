@@ -302,6 +302,17 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "List All Enabled Tasks For Shipment",
+					"request": {
+						"url": "http://localhost:8081/educama/v1/tasks/enabled/54d18d39-8490-45f1-bb8d-603baf089b2e",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		}
