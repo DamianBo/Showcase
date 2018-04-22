@@ -145,7 +145,29 @@
 				{
 					"name": "List Suggestions for Customers",
 					"request": {
-						"url": "http://localhost:8081/educama/v1/customers/suggestions?term=p",
+						"url": {
+							"raw": "http://localhost:8081/educama/v1/customers/suggestions?term=p",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"educama",
+								"v1",
+								"customers",
+								"suggestions"
+							],
+							"query": [
+								{
+									"key": "term",
+									"value": "p",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -186,26 +208,6 @@
 					"response": []
 				},
 				{
-					"name": "List All Shipments",
-					"request": {
-						"url": "http://localhost:8081/educama/v1/shipments",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
 					"name": "Update Shipment",
 					"request": {
 						"url": "http://localhost:8081/educama/v1/shipments/ae8e57d1-12ce-4993-ad7a-ce0867af9e0a",
@@ -220,6 +222,37 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"uuidSender\" : \"19b35539-c86c-4169-83aa-ed58b1d94ac1\",\r\n  \"uuidReceiver\" : \"738edb6f-77c7-4652-a138-548cd3b972f1\",\r\n  \"customerTypeEnum\" : \"RECEIVER\",\r\n  \"shipmentCargo\" : {\r\n    \"numberPackages\" : \"100\",\r\n    \"totalWeight\" : \"200.0\",\r\n    \"totalCapacity\" : \"300.0\",\r\n    \"cargoDescription\" : \"This cargo includes pens and other writing articles\",\r\n    \"dangerousGoods\" : false\r\n  },\r\n  \"shipmentServices\" : {\r\n    \"preCarriage\" : true,\r\n    \"exportInsurance\" : false,\r\n    \"exportCustomsClearance\" : true,\r\n    \"flight\" : true,\r\n    \"importInsurance\" : true,\r\n    \"importCustomsClearance\" : false,\r\n    \"onCarriage\" : true\r\n  },\r\n  \"shipmentFlight\" : {\r\n    \"flightNumber\" : \"999999\",\r\n    \"airline\" : \"LH\",\r\n    \"departureAirport\" : \"UPD\",\r\n    \"destinationAirport\" : \"UPD\",\r\n    \"departureTime\" : \"2015-06-02T21:34:33.616Z\",\r\n    \"destinationTime\" : \"2015-06-02T21:34:33.616Z\",\r\n    \"price\" : 100.00\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single Shipment",
+					"request": {
+						"url": "http://localhost:8081/educama/v1/shipments/901bf3d4-0a80-4eeb-84e5-95665702b8d5",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "List All Shipments",
+					"request": {
+						"url": "http://localhost:8081/educama/v1/shipments",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
 						},
 						"description": ""
 					},

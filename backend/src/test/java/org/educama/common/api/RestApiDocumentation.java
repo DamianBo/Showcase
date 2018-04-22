@@ -326,6 +326,18 @@ public class RestApiDocumentation {
     }
 
     @Test
+    public void getShipmentTest() throws Exception {
+        MvcResult result = createShipment().andExpect(status().isCreated()).andReturn();
+        JSONObject jsonResult = new JSONObject(result.getResponse().getContentAsString());
+        String trackingId = jsonResult.getString("trackingId");
+
+
+        this.mockMvc.perform(get("/educama/v1/shipments/" + trackingId)).andExpect(status().isOk())
+                .andDo(this.documentationHandler.document(
+                        responseFields(fieldDescriptorShipmentResource)));
+    }
+
+    @Test
     public void listShipmentTest() throws Exception {
         createShipment();
 

@@ -101,6 +101,19 @@ include::{snippets}/updateShipmentTest/http-response.adoc[]
 ==== Response structure
 include::{snippets}/updateShipmentTest/response-fields.adoc[]
 
+=== Get a Shipment
+
+A `GET` request is used to get a single shipment.
+
+==== Example Request
+include::{snippets}/getShipmentTest/http-request.adoc[]
+
+==== Example Response
+include::{snippets}/getShipmentTest/http-response.adoc[]
+
+==== Response structure
+include::{snippets}/getShipmentTest/response-fields.adoc[]
+
 === List of Shipments
 
 A `GET` request is used to get a list of shipments.
